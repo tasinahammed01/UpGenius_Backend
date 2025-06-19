@@ -5,25 +5,7 @@ import mongoose from "mongoose";
 import http from "http";
 import { Server } from "socket.io";
 
-import authRoutes from "./routes/authRoutes";
-import classroomRoutes from "./routes/classroomRoutes";
-import assignmentRoutes from "./routes/assignmentRoutes";
-import submissionRoutes from "./routes/submissionRoutes";
-import quizRoutes from "./routes/quizRoutes";
-import analyticsRoutes from "./routes/analyticsRoutes";
-import progressRoutes from "./routes/progressRoutes";
-import gamificationRoutes from "./routes/gamificationRoutes";
-import leaderboardRoutes from "./routes/leaderboardRoutes";
-import calendarRoutes from "./routes/calenderRoutes";
-import resourceRoutes from "./routes/resourceRoutes";
-import forumRoutes from "./routes/forumRoutes";
-import notificationRoutes from "./routes/notificationRoutes";
-import lectureRoutes from "./routes/lectureRoutes";
-import liveClassRoutes from "./routes/liveClassRoutes";
-import aiAssistantRoutes from "./routes/aiRoutes";
-import userRoutes from "./routes/userRoutes";
 
-import { errorHandler } from "./middleware/errorMiddleware";
 
 // Config
 dotenv.config();
@@ -46,26 +28,9 @@ app.get("/", (req, res) => {
 
 // Routes
 
-app.use("/api/auth", authRoutes);
-app.use("/api/classrooms", classroomRoutes);
-app.use("/api/assignments", assignmentRoutes);
-app.use("/api/submissions", submissionRoutes);
-app.use("/api/quizzes", quizRoutes);
-app.use("/api/analytics", analyticsRoutes);
-app.use("/api/progress", progressRoutes);
-app.use("/api/gamification", gamificationRoutes);
-app.use("/api/leaderboard", leaderboardRoutes);
-app.use("/api/calendar", calendarRoutes);
-app.use("/api/resources", resourceRoutes);
-app.use("/api/forum", forumRoutes);
-app.use("/api/notifications", notificationRoutes);
-app.use("/api/lectures", lectureRoutes);
-app.use("/api/live", liveClassRoutes);
-app.use("/api/ai", aiAssistantRoutes);
-app.use("/api/users", userRoutes);
 
 // Error Middleware
-app.use(errorHandler);
+
 
 // Socket Setup
 io.on("connection", (socket) => {
