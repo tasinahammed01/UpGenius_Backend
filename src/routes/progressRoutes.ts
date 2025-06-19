@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { updateXP } from "../controllers/progressController";
+import { createProgress } from "../controllers/progressController";
 const router = Router();
-router.post("/update", updateXP);
+router.post("/update", createProgress);
 export default router;

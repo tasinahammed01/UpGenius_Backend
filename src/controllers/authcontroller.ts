@@ -1,16 +1,31 @@
-import { Request, Response } from "express";
 import User from "../models/User";
+import { Request, Response } from "express";
 
-export const register = async (req: Request, res: Response) => {
+export const registerUser = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  const { name, email, role = "student" } = req.body;
+  const firebaseUser = (req as any).firebaseUser;
+
   try {
-    const newUser = await User.create(req.body);
-    res.status(201).json(newUser);
-  } catch (error) {
-    res.status(400).json({ error });
-  }
-};
+    // Check if user already exists
+    const existing = await User.findOne({ email });
+    if (existing) {
+      res.status(200).json(existing);
+      return;
+    }
 
-export const login = async (req: Request, res: Response) => {
-  // Dummy logic
-  res.status(200).json({ message: "Login successful" });
+    // Save new user
+    const newUser = new User({
+      name,
+      email,
+      role,
+    });
+
+    await newUser.save();
+    res.status(201).json(newUser);
+  } catch (err) {
+    res.status(500).json({ error: "Server error", details: err });
+  }
 };

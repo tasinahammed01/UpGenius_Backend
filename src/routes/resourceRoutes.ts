@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { uploadResource } from "../controllers/resourseController";
+import { createResource } from "../controllers/resourseController";
 const router = Router();
-router.post("/upload", uploadResource);
+router.post("/upload", createResource);
 export default router;

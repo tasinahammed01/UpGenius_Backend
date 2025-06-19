@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { submitAssignment } from "../controllers/submissionController";
+import { createSubmission } from "../controllers/submissionController";
 const router = Router();
-router.post("/submit", submitAssignment);
+router.post("/submit", createSubmission);
 export default router;
